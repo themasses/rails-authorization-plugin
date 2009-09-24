@@ -96,9 +96,9 @@ module Authorization
         # authentication
         send( STORE_LOCATION_METHOD ) if respond_to? STORE_LOCATION_METHOD
         if @current_user && @current_user != :false
-          redirect_to @options[:permission_denied_redirection] || PERMISSION_DENIED_REDIRECTION
+          render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return
         else
-          redirect_to @options[:login_required_redirection] || LOGIN_REQUIRED_REDIRECTION
+          render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return
         end
         false  # Want to short-circuit the filters
       end
