@@ -96,9 +96,13 @@ module Authorization
         # authentication
         send( STORE_LOCATION_METHOD ) if respond_to? STORE_LOCATION_METHOD
         if @current_user && @current_user != :false
-          render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return
+          #render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return
+          reset_session
+          redirect_to root_path
         else
-          render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return
+          #render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return
+          reset_session
+          redirect_to root_path
         end
         false  # Want to short-circuit the filters
       end
